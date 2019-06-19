@@ -85,7 +85,11 @@ func generateMonth(year int, month int, keyboard tgbotapi.InlineKeyboardMarkup) 
 			monthStr = fmt.Sprintf("0%v", monthStr)
 		}
 
-		btn := tgbotapi.NewInlineKeyboardButtonData(fmt.Sprintf("%v", i), fmt.Sprintf("%v.%v.%v", year, monthStr, day))
+		btnText := fmt.Sprintf("%v", i)
+		if(time.Now().Day() == i) {
+			btnText = fmt.Sprintf("%v!", i)
+		}
+		btn := tgbotapi.NewInlineKeyboardButtonData(btnText, fmt.Sprintf("%v.%v.%v", year, monthStr, day))
 		rowDays = append(rowDays, btn)
 		amountWeek++
 	}
